@@ -1,0 +1,114 @@
+:root{--bg:#f5f8f6;--panel:#fff;--ink:#10231f;--mut:#566a64;--line:#d9e2dd;--pri:#0a6847;--pri-ink:#fff;--soft:#e2f0e8;--warn:#b3261e;--warn-bg:#fbe4e1;--ok:#0a6847;--ok-bg:#dff1e6;--gold:#f2b705;--r:8px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a17;--panel:#14251f;--ink:#e4efe9;--mut:#9ab3a9;--line:#263a33;--pri:#4fc08d;--pri-ink:#06150f;--soft:#1b3128;--warn:#ff9a8f;--warn-bg:#3a1d1a;--ok:#6fd6a0;--ok-bg:#17331f}}
+:root[data-theme="dark"]{--bg:#0d1a17;--panel:#14251f;--ink:#e4efe9;--mut:#9ab3a9;--line:#263a33;--pri:#4fc08d;--pri-ink:#06150f;--soft:#1b3128;--warn:#ff9a8f;--warn-bg:#3a1d1a;--ok:#6fd6a0;--ok-bg:#17331f}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Figtree",system-ui,sans-serif;
+border-top:4px solid;border-image:linear-gradient(90deg,#008751 0 33.4%,#fcd116 0 66.7%,#e8112d 0) 1;
+padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) 0 env(safe-area-inset-left,0px)}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:700;margin:0;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:30px}
+
+/* repère de la clinique : une croix */
+.cross{display:inline-block;width:26px;height:26px;position:relative;flex:none}
+.cross::before,.cross::after{content:"";position:absolute;background:var(--pri);border-radius:2px}
+.cross::before{left:10px;top:0;width:6px;height:26px}
+.cross::after{left:0;top:10px;width:26px;height:6px}
+.cross.big{width:44px;height:44px;margin-bottom:14px}
+.cross.big::before{left:17px;width:10px;height:44px}
+.cross.big::after{top:17px;width:44px;height:10px}
+
+.app{display:grid;grid-template-columns:244px 1fr;min-height:100vh}
+aside{background:var(--panel);border-right:1px solid var(--line);padding:24px 14px;position:sticky;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;font:700 20px/1.1 "Fraunces",Georgia,serif;margin:0 6px 28px}
+.brand small{display:block;font:400 13px "Figtree",sans-serif;color:var(--mut);margin-top:3px}
+nav button{display:block;width:100%;text-align:left;background:none;border:0;border-left:3px solid transparent;color:var(--mut);padding:10px 12px;border-radius:0 var(--r) var(--r) 0;font:600 16px/1.3 "Figtree",system-ui,sans-serif;cursor:pointer;margin-bottom:2px}
+nav button:hover{color:var(--ink);background:var(--bg)}
+nav button[aria-current="page"]{background:var(--soft);color:var(--pri);border-left-color:var(--pri)}
+.side-foot{margin-top:auto;padding:0 6px}
+:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+
+main{padding:30px clamp(16px,4vw,44px);max-width:1100px;width:100%}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.top p{margin:4px 0 0;color:var(--mut);max-width:60ch}
+
+.btn{background:var(--pri);color:var(--pri-ink);border:0;border-radius:var(--r);padding:10px 18px;font:600 15px/1.3 "Figtree",system-ui,sans-serif;cursor:pointer;min-height:42px}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.ghost:hover{background:var(--soft);filter:none}
+.btn.sm{padding:5px 12px;font-size:14px;min-height:34px}
+
+/* chiffres du jour : une seule bande, séparée par des filets */
+.stats{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);margin-bottom:22px}
+.stat{flex:1;padding:16px 20px}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat b{display:block;font:700 34px/1.1 "Fraunces",Georgia,serif}
+.stat span{color:var(--mut);font-size:14px}
+.stat.alert b{color:var(--warn)}
+
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:18px}
+.panel h2{font-size:20px;margin-bottom:14px}
+.agenda{list-style:none;margin:0;padding:0 0 0 16px;border-left:3px solid var(--line)}
+.agenda li{position:relative;display:grid;grid-template-columns:62px 1fr auto;gap:10px;align-items:center;padding:11px 0}
+.agenda li+li{border-top:1px solid var(--line)}
+.agenda li::before{content:"";position:absolute;left:-23px;top:50%;width:11px;height:11px;margin-top:-5px;border-radius:50%;background:var(--line);border:2px solid var(--panel)}
+.agenda li.s1::before{background:var(--warn)}.agenda li.s2::before{background:var(--gold)}.agenda li.s3::before{background:var(--ok)}
+.hr{font:700 18px "Fraunces",Georgia,serif}
+.who small{display:block;color:var(--mut)}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:13px;font-weight:600;background:var(--soft);color:var(--ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn)}.tag.ok{background:var(--ok-bg);color:var(--ok)}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line);font-size:15px}
+th{color:var(--mut);font-weight:600;font-size:14px}
+tbody tr:hover{background:var(--bg)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:4px 14px}
+.grid .wide{grid-column:1/-1}
+.panel label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:600}
+.chk input{width:auto}
+.dl{display:grid;grid-template-columns:140px 1fr;gap:6px 12px;margin:12px 0}
+.dl dt{color:var(--mut);font-size:14px}.dl dd{margin:0}
+textarea,input,select{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:var(--r);padding:9px 12px;width:100%;min-height:42px}
+textarea{min-height:90px;resize:vertical}
+textarea:focus,input:focus,select:focus{border-color:var(--pri);outline:none;box-shadow:0 0 0 3px var(--soft)}
+.search{max-width:340px;margin-bottom:14px}
+.empty{color:var(--mut);padding:18px 0}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--ink);padding:24px;width:min(440px,92vw)}
+dialog::backdrop{background:rgba(8,20,16,.55)}
+dialog label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+.row{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+
+/* écran d'accueil du patient */
+.app.gate{grid-template-columns:1fr}
+.app.gate aside{display:none}
+.gate-box{max-width:720px;margin:0 auto;padding-top:clamp(0px,4vh,40px)}
+.gate-box h1{font-size:clamp(30px,6vw,42px)}
+.gate-box h1.gt{margin-top:14px}
+.lead{color:var(--mut);margin:10px 0 24px;font-size:18px}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.choice{background:var(--panel);color:var(--ink);border:1.5px solid var(--line);border-left:8px solid var(--pri);border-radius:14px;padding:26px 22px;text-align:left;cursor:pointer;font:inherit;transition:transform .15s,border-color .15s}
+.choice.old{border-left-color:var(--gold)}
+.choice:hover{border-color:var(--pri);transform:translateY(-2px)}
+.choice.old:hover{border-left-color:var(--gold)}
+.choice b{display:block;font:700 24px "Fraunces",Georgia,serif;margin-bottom:6px}
+.choice span{color:var(--mut)}
+.gfoot{margin:30px 0 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+@media (max-width:760px){
+body{padding-bottom:0}
+.app{grid-template-columns:1fr}
+aside{position:fixed;left:0;right:0;bottom:0;top:auto;height:auto;z-index:20;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));border-right:0;border-top:1px solid var(--line);flex-direction:row}
+.brand,.side-foot{display:none}
+nav{display:flex;gap:2px;width:100%}
+nav button{flex:1;min-width:0;text-align:center;padding:8px 0;font-size:11px;line-height:1.15;border-left:0;border-top:3px solid transparent;border-radius:var(--r)}
+nav button[aria-current="page"]{border-left:0;border-top-color:var(--pri)}
+main{padding-top:22px;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+.app.gate main{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+h1{font-size:26px}
+.stat{padding:14px}.stat b{font-size:28px}
+.agenda li{grid-template-columns:52px 1fr}
+.agenda li .act{grid-column:2}
+}
+@media (prefers-reduced-motion:reduce){.choice{transition:none}.choice:hover{transform:none}}
